@@ -1,5 +1,10 @@
-// eslint-disable-next-line no-undef
+/* global require, Buffer, process, module */
+
 const fs = require('fs');
+const { firefox, chromium } = require('playwright');
+process.env.CHROME_BIN = chromium.executablePath();
+process.env.FIREFOX_BIN = firefox.executablePath();
+
 // karma does not recognise the file as binary and autoamtically converts it to utf8 to apply preprocessors.
 // Using a middleware to load the file prevents the transformation and preserves the charset information.
 function charsets_middleware() {
