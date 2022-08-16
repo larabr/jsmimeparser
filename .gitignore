@@ -1,2 +1,4 @@
 dist
 node_modules
+test/.DS_Store
+.DS_Store

@@ -2,12 +2,13 @@
   "name": "jsmime",
   "version": "0.2.0",
   "description": "An asynchronous MIME parser and emitter written in JavaScript",
-  "main": "jsmime.js",
+  "main": "lib/index.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "karma start karma.conf.js",
+    "lint": "eslint lib test --quiet"
   },
   "repository": {
     "type": "git",
@@ -17,5 +18,22 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/mozilla-comm/jsmime/issues"
+  },
+  "devDependencies": {
+    "chai": "^4.3.6",
+    "eslint": "^8.4.1",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.3",
+    "karma": "^6.4.0",
+    "karma-chrome-launcher": "^3.1.1",
+    "karma-firefox-launcher": "^2.1.2",
+    "karma-mocha": "^2.0.1",
+    "karma-mocha-reporter": "^2.2.5",
+    "karma-webpack": "^5.0.0",
+    "mocha": "^10.0.0",
+    "webpack": "^5.74.0"
+  },
+  "dependencies": {
+    "emailjs-utf7": "^4.0.1"
   }
 }
