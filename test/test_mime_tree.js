@@ -844,11 +844,11 @@ describe("MimeParser", function() {
         strformat: "unicode",
         bodyformat: "decode",
       }).then(function(tree) {
-        var numParts = 10;
+        var numParts = 14;
         for (let i = 1; i < numParts; i += 2) {
           assert.equal(tree.get("" + i).body, tree.get("" + (i + 1)).body);
         }
-        // assert.ok(!tree.has("" + (numParts + 1)));
+        assert.ok(!tree.has("" + (numParts + 1)));
       });
     });
   });
