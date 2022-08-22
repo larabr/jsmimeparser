@@ -23,6 +23,7 @@
         "import"
     ],
     "rules": {
+        "no-unused-vars": ["error", {"args": "none"}],
         "prefer-spread": "off",
         "no-restricted-syntax": "off",
         "consistent-return": "off",
