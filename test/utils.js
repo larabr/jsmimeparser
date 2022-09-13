@@ -4,7 +4,7 @@
  * @param {String} iso8601String An ISO-8601 date/time string including a
  *                               timezone offset.
  */
-export default function MockDate(iso8601String) {
+ export function MockDate(iso8601String) {
   // Find the timezone offset (Z or ±hhmm) from the ISO-8601 date string, and
   // then convert that into a number of minutes.
   let parse = /\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(Z|[+-]\d{4})/.exec(
@@ -74,4 +74,46 @@ for (let name of Object.getOwnPropertyNames(Date.prototype)) {
       },
     });
   }
+}
+
+
+// A file cache for read_file.
+const file_cache = {};
+/**
+ * Read a file into a string (all line endings become CRLF).
+ * @param file  The name of the file to read, relative to the data/ directory.
+ * @param start The first line of the file to return, defaulting to 0
+ * @param end   The last line of the file to return, defaulting to the number of
+ *              lines in the file.
+ * @return      Promise<String> The contents of the file as a binary string.
+ */
+export function read_file(file, start, end) {
+  if (!(file in file_cache)) {
+    var realFile = new Promise(function(resolve, reject) {
+      fetch('base/test/data/' + file)
+        .then(response => response.ok ? response.arrayBuffer() : reject(new Error('error fetching file')))
+        .then(buffer => {
+          resolve(new Uint8Array(buffer))
+        })
+        .catch(err => reject(err))
+    });
+    var loader = realFile.then(function(contents) {
+      var inStrForm = "";
+      while (contents.length > 0) {
+        inStrForm += String.fromCharCode.apply(
+          null,
+          contents.subarray(0, 1024)
+        );
+        contents = contents.subarray(1024);
+      }
+      return inStrForm.split(/\r\n|[\r\n]/);
+    });
+    file_cache[file] = loader;
+  }
+  return file_cache[file].then(function(contents) {
+    if (start !== undefined) {
+      contents = contents.slice(start - 1, end - 1);
+    }
+    return contents.join("\r\n");
+  });
 }

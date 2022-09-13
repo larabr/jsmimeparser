@@ -2,7 +2,7 @@
 import { assert } from 'chai';
 import { headeremitter } from '../lib/jsmime';
 
-import MockDate from "./mock_date";
+import { MockDate } from './utils';
 
 function arrayTest(data, fn) {
   fn.toString = function() {
