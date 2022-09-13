@@ -1,6 +1,6 @@
 
 import { assert } from "chai";
-import { headerparser } from "../lib";
+import { headerparser } from "../lib/jsmime";
 
 function arrayTest(data, fn) {
   fn.toString = function() {

@@ -1,5 +1,5 @@
 import { assert } from "chai";
-import { MimeParser, headerparser } from "../lib";
+import { MimeParser, headerparser } from "../lib/jsmime";
 
 function arrayTest(data, fn) {
   fn.toString = function() {

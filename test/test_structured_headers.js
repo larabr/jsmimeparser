@@ -1,5 +1,5 @@
 import { assert } from "chai";
-import { headerparser } from "../lib";
+import { headerparser } from "../lib/jsmime";
 
 function smartDeepEqual(actual, expected) {
   assert.deepEqual(actual, expected);

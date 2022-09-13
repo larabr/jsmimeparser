@@ -1,6 +1,6 @@
 
 import { assert } from 'chai';
-import { headeremitter } from '../lib';
+import { headeremitter } from '../lib/jsmime';
 import MockDate from "./mock_date";
 
 function arrayTest(data, fn) {

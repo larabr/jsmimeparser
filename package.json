@@ -2,7 +2,7 @@
   "name": "jsmime",
   "version": "0.2.0",
   "description": "An asynchronous MIME parser and emitter written in JavaScript",
-  "main": "lib/index.js",
+  "main": "index.js",
   "directories": {
     "test": "test"
   },

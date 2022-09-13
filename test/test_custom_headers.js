@@ -1,6 +1,6 @@
 
 import { assert } from "chai";
-import { headeremitter, headerparser } from "../lib";
+import { headeremitter, headerparser } from "../lib/jsmime";
 
 describe("Custom decoder support", function() {
   function customDecoder(values) {
