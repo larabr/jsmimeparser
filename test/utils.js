@@ -87,7 +87,7 @@ const file_cache = {};
  *              lines in the file.
  * @return      Promise<String> The contents of the file as a binary string.
  */
-export function read_file(file, start, end) {
+export function read_file(file, start = undefined, end = undefined) {
   if (!(file in file_cache)) {
     var realFile = new Promise(function(resolve, reject) {
       fetch('base/test/data/' + file)

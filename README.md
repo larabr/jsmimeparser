@@ -1,5 +1,5 @@
 This is a fork of [mozilla-comm/jsmime](https://github.com/mozilla-comm/jsmime) that has been updated to include the changes made in [mozilla/releases-comm-central](https://github.com/mozilla/releases-comm-central/tree/master/mailnews/mime/jsmime) (incl. UTF-7 support).
-Further, the library now uses ES6 modules.  
+Further, the library now uses ES6 modules.
 
 
 Code Layout
@@ -16,8 +16,7 @@ The MIME parser consists of three logical phases of translation:
 2. Convert the MIME tree into a list of body parts and attachments.
 3. Use the result to drive a displayed version of the message.
 
-The first stage is located in `mimeparser.js`. The latter stages have yet to be
-implemented.
+The first stage is located in `rawMimeParser.js`, the second in `mailParser.js` (in particular, the `parseMail` function). The latter stage is left to the applications.
 
 Dependencies
 ============
