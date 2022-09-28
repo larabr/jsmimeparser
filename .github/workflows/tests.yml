@@ -22,5 +22,8 @@ jobs:
       - name: Install Firefox
         run: npx playwright install-deps firefox
 
+      - name: Install Webkit
+        run: npx playwright install-deps webkit
+
       - name: Run tests
         run: npm test

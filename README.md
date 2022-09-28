@@ -65,6 +65,11 @@ See `test/test_mail_parser.ts` for other examples with different MIME messages. 
 
 Aside from `parseMail`, several lower-level functions are exported by `lib/jsmime` and `lib/mailParser` (mostly unchanged from the original jsmime & mozilla repos).
 
+# Testing
+Headless Chrome (or Chromium), Firefox and Webkit are used for the tests.
+To install any missing browsers automatically, you can run `npx playwright install-deps <chromium|firefox|webkit>`. Alternatively, you can install them manually as you normally would on your platform.
+If you'd like to test on a subset of browsers, use e.g. `npm test -- --browsers ChromeHeadless,FirefoxHeadless`.
+
 # Dependencies
 
 This code depends on the following ES6 features and Web APIs:

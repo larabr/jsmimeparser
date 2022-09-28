@@ -1,11 +1,12 @@
 /* global require, Buffer, process, module */
 
 const fs = require('fs');
-const { firefox, chromium } = require('playwright');
+const { firefox, chromium, webkit } = require('playwright');
 process.env.CHROME_BIN = chromium.executablePath();
 process.env.FIREFOX_BIN = firefox.executablePath();
+process.env.WEBKIT_HEADLESS_BIN = webkit.executablePath();
 
-// karma does not recognise the file as binary and autoamtically converts it to utf8 to apply preprocessors.
+// karma does not recognise the file as binary and automatically converts it to utf8 to apply preprocessors.
 // Using a middleware to load the file prevents the transformation and preserves the charset information.
 function charsets_middleware() {
   return function (request, response, next) {
@@ -38,6 +39,7 @@ module.exports = function(config) {
       'karma-mocha-reporter',
       'karma-chrome-launcher',
       'karma-firefox-launcher',
+      'karma-webkit-launcher',
       {'middleware:charsets': ['factory', charsets_middleware]}
     ],
 
@@ -80,7 +82,7 @@ module.exports = function(config) {
     // enable / disable watching file and executing tests whenever any file changes
     autoWatch: false,
 
-    browsers: ['ChromeHeadless', 'FirefoxHeadless'],
+    browsers: ['ChromeHeadless', 'FirefoxHeadless', 'WebkitHeadless'],
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
