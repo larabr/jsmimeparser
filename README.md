@@ -1,7 +1,7 @@
 This is a fork of [mozilla-comm/jsmime](https://github.com/mozilla-comm/jsmime) that has been updated to include the changes made in [mozilla/releases-comm-central](https://github.com/mozilla/releases-comm-central/tree/master/mailnews/mime/jsmime) (incl. UTF-7 support).
 Further, the library now uses ES6 modules and exposes a user-friendly `parseMail` function.
 
-# Code Layout
+## Code Layout
 
 JSMime is a MIME parsing and composition library that is written completely in
 JavaScript using ES6 functionality and WebAPIs (where such APIs exist). There
@@ -16,11 +16,19 @@ The MIME parser consists of three logical phases of translation:
 
 The first stage is located in `rawMimeParser.js`, the second in `mailParser.js` (in particular, the `parseMail` function). The latter stage is left to the applications.
 
-# Usage
+## Install
+
+```js
+npm i @protontech/jsmimeparser
+```
+
+## Usage
 
 The `parseMail` function is designed to be user-friendly but remains bare-bones in the sense that it does not add metadata or information that is not found in the original message (e.g. no automatic contentID or checksum generation for the attachments, unlike [Nodemailer's MailParser](https://github.com/nodemailer/mailparser)).
 
 ```js
+import { parseMail } from '@protontech/jsmimeparser';
+
 const eml = `Message-Id: <200308210240.h7L2e5A0016623@sphinx.got.net>
 Received: from source ([69.9.251.177]) by exprod5mx37.postini.com ...
 From: "Bob Example" <bob@internet.com>
@@ -65,21 +73,7 @@ See `test/test_mail_parser.ts` for other examples with different MIME messages. 
 
 Aside from `parseMail`, several lower-level functions are exported by `lib/jsmime` and `lib/mailParser` (mostly unchanged from the original jsmime & mozilla repos).
 
-# Testing
+## Testing
 Headless Chrome (or Chromium), Firefox and Webkit are used for the tests.
 To install any missing browsers automatically, you can run `npx playwright install-deps <chromium|firefox|webkit>`. Alternatively, you can install them manually as you normally would on your platform.
 If you'd like to test on a subset of browsers, use e.g. `npm test -- --browsers ChromeHeadless,FirefoxHeadless`.
-
-# Dependencies
-
-This code depends on the following ES6 features and Web APIs:
-* ES6 imports
-* ES6 generators
-* ES6 Map and Set
-* ES6 @@iterator support (especially for Map and Set)
-* ES6 let
-* ES6 let-destructuring
-* ES6 const
-* Typed arrays (predominantly Uint8Array)
-* btoa, atob (found on global Windows or WorkerScopes)
-* TextDecoder
