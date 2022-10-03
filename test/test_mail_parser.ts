@@ -57,4 +57,14 @@ describe('mail parser', () => {
     expect(attachment2.contentType).to.equal('image/png');
     expect(attachment2.fileName).to.equal('test.png');
   });
+
+  it('returns an empty array for empty attachment body', async () => {
+    const eml = await read_file("multipart-empty-attachment");
+    const { attachments: [attachment] } = parseMail(eml);
+
+    expect(attachment.content).to.be.instanceOf(Uint8Array);
+    expect(attachment.content).to.have.length(0);
+    expect(attachment.contentType).to.equal('text/rfc822-headers');
+    expect(attachment.fileName).to.equal('');
+  });
 });
