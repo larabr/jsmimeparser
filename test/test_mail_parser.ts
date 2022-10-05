@@ -1,8 +1,9 @@
 import { expect } from "chai";
 import { read_file } from "./utils";
 import { parseMail } from "../";
+import { typedArrayToString } from "../lib/utils";
 
-const toBase64 = uInt8Array => btoa(String.fromCharCode(...uInt8Array));
+const toBase64 = uInt8Array => btoa(typedArrayToString(uInt8Array));
 
 describe('mail parser', () => {
   it('correctly parses multipart message with both HTML and plain text data', async () => {
