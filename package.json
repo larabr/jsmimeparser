@@ -4,6 +4,11 @@
   "description": "An asynchronous MIME parser written in JavaScript",
   "main": "index.js",
   "types": "index.d.ts",
+  "files": [
+    "lib/",
+    "index.d.ts",
+    "index.js"
+  ],
   "scripts": {
     "postversion": "git push && git push --tags",
     "test": "karma start karma.conf.js",
