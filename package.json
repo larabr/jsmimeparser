@@ -38,8 +38,5 @@
     "mocha": "^10.0.0",
     "playwright": "^1.25.0",
     "webpack": "^5.74.0"
-  },
-  "dependencies": {
-    "emailjs-utf7": "^4.0.1"
   }
 }
