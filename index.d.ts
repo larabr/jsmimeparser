@@ -10,6 +10,8 @@ interface Attachment {
   contentId?: string;
 }
 
+type EmailAddress = { name: string, email: string };
+
 export interface ParsedMessage {
   attachments: Attachment[];
   headers: Headers;
@@ -19,11 +21,11 @@ export interface ParsedMessage {
   },
   date?: Date;
   subject?: string,
-  from?: string,
-  to?: string,
-  cc?: string,
-  bcc?: string,
-  'reply-to'?: string
+  from?: EmailAddress,
+  to?: EmailAddress[],
+  cc?: EmailAddress[],
+  bcc?: EmailAddress[],
+  'reply-to'?: EmailAddress
 }
 
 export function parseMail(message: string): ParsedMessage;

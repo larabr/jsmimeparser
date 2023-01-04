@@ -76,4 +76,15 @@ describe('mail parser', () => {
     expect(subject).to.equal('subject with emojis 😃😇');
     expect(body.text).to.equal('test utf8 in encrypted subject\n');
   });
+
+  it('parses addresses and date', async () => {
+    const eml = await read_file("multipart-addresses");
+    const { from, to, cc, bcc, date } = parseMail(eml);
+
+    expect(from).to.deep.equal({ name: 'Some One', email: 'someone@test.com' });
+    expect(to).to.deep.equal([{ name: '', email: 'receiver@test.com' }, { name: '', email: 'another_receiver@test.com' }]);
+    expect(cc).to.deep.equal([{ name: '', email: 'copy@test.com' }]);
+    expect(bcc).to.be.undefined;
+    expect(date).to.deep.equal(new Date('Sun, 12 Jun 2022 17:21:02 +0200'));
+  });
 });
