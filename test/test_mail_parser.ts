@@ -68,4 +68,12 @@ describe('mail parser', () => {
     expect(attachment.contentType).to.equal('text/rfc822-headers');
     expect(attachment.fileName).to.equal('');
   });
+
+  it('decodes the subject', async () => {
+    const eml = await read_file("multipart-encrypted-subject-utf8");
+    const { subject, body } = parseMail(eml);
+
+    expect(subject).to.equal('subject with emojis 😃😇');
+    expect(body.text).to.equal('test utf8 in encrypted subject\n');
+  });
 });
